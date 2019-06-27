@@ -1,0 +1,34 @@
+<% content_for :title do %>
+  <%= "#{@system.name} | ACB" %>
+<% end %>
+
+  <%# アドセンス広告=>レクタングル大 %>
+  <%= render "home/adsense" %>
+
+  <div id="system">
+
+    <div class="system_top">
+      <%# タイトル %>
+      <h1><%= @system.name %></h1>
+      <%# 編集、削除ボタン %>
+      <% if user_signed_in? %>
+        <% if current_user?(@system.user) %>
+          <%= link_to "編集", edit_system_path(@system.id) %>
+          <%= " | " %><%= link_to "削除", block_path(@system.id), data: { confirm: "本当に削除しますか？" }, method: :delete %>
+        <% end %>
+      <% end %>
+      <p>作成者： <%= link_to @system.user.name, user_path(@system.user.id) %></p>
+      <%# トップのテキスト %>
+      <p><%= simple_format(@system.description) %></p>
+      <% if @system.url.present? %><a href="<%= @system.url %>" target="_blank"><%= @system.url %></a><% end %>
+    </div>
+
+    <div id="system_blocks">
+      <%= render "systems/blocks", blocks:@blocks, system:@system %>
+    </div>
+
+  </div>
+
+  <%# アドセンス広告=>レクタングル大 %>
+  <%= render "home/adsense" %>
+

@@ -1,0 +1,8 @@
+<% content_for :title do %>
+  <%= "投稿 | ACB" %>
+<% end %>
+
+<div id="form">
+  <h1>投稿</h1>
+  <%= render 'form', block:@block, action:@action %>
+</div>

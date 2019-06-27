@@ -1,0 +1,101 @@
+<%# 本来であれば下のような書き方で適切にルーティングできるのだが、URLのparamをcodeに変更したのでアクションメソッドを明示的に示す必要がある。  %>
+<%#= form_with(model: post, local: true) do |form| if @url.include?("new") %>
+<%= form_for block, :url => {:action => action} do |form| %>
+
+  <% if block.errors.any? %>
+    <div class="field error_field">
+      <% block.errors.full_messages.each do |message| %>
+        <p class="error_message"><i class="far fa-comment"></i> <%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <div class="field"><%= form.text_field :name, placeholder: "block name", autofocus: true, class:"require", maxlength: "50" %></div>
+
+  <div class="field"><%= form.text_area :content, maxlength: "4649", placeholder: "" %></div>
+
+  <div class="field">
+    <div class="selectbox sb">
+      <%= form.select :category, ["未選択", "インフラ", "サーバーサイド", "フロントエンド", "その他"], class: "sample" %>
+    </div>
+  </div>
+
+
+  <div class="code_field">
+    <div>
+      <%= form.fields_for :codes do |code| %>
+        <%= render 'code_fields', f: code %>
+      <% end %>
+    </div>
+    <div class="plus_field"><%= link_to_add_association "＋", form, :codes, class: "plus" %></div>
+  </div>
+
+  <p id="require_message" style="text-align:center; clear:both;"></p>
+
+
+  <script>
+    // cocoonの追加フォームの数を制限
+    $(function() {
+
+      // ページを表示したときの最初のcatchの個数を取得
+      var code_count = $(".code_field .nested-fields").length; 
+
+      // ページが読み込まれたときに実行
+      check_to_hide_or_show_add_link(code_count);
+
+      // 追加ボタンを押す手前で実行
+      $(".code_field").on("cocoon:after-insert", function() {
+        code_count++; // codeの個数を１増やす
+        check_to_hide_or_show_add_link(code_count);
+      });
+
+      // 削除ボタンを押す手前で実行
+      $(".code_field").on("cocoon:after-remove", function() {
+        code_count--; // catchの個数を１減らす
+        check_to_hide_or_show_add_link(code_count);
+      });
+
+
+      // 追加できるフォームは300個まで
+      function check_to_hide_or_show_add_link(code_count) {
+        if (code_count >= 300) {
+          $(".plus").hide();
+        } else {
+          $(".plus").show();
+        }
+      }
+    });
+  </script>
+
+
+  <script>
+    // 入力チェックのスクリプト
+    $(function(){
+      // コンテンツタイトルが空白またはスペースだけであればsubmitさせない
+      setInterval(function(){
+        let value = $(".require").val();
+        if ( value == "" || !value.match(/[^\s\t]/) ) {
+          $("#require_message").text("ブロックネームを入力しましょう");
+          $("#btn").css({"background":"rgba(0,255,255,0.5)"});
+          $("#btn").prop("disabled", true);
+        } else {
+          $("#require_message").text("");
+          $("#btn").css({"background":"rgba(0,255,255,1)"});
+          $("#btn").prop("disabled", false);
+        }
+      },1000);
+    });
+  </script>
+
+  <div class="actions">
+    <% if controller.action_name == "new" %>
+      <%= form.submit "CREATE", disabled:true, id:"btn" %>
+    <% else %>
+      <%= form.submit "UPDATE", disabled:true, id:"btn" %>
+    <% end %>
+  </div>
+
+<% end %>
+
+

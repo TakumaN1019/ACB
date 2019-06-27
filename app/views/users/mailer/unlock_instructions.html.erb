@@ -1,0 +1,3 @@
+<p>下記リンクをクリックしてロックを解除してください。</p>
+
+<p><%= link_to '下記リンク', check_unlock_url(@user.id, unlock_token: @token) %></p>

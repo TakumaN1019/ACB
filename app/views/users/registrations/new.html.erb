@@ -1,0 +1,121 @@
+<% content_for :title do %>
+  <%= "新規登録 | POST" %>
+<% end %>
+
+<div id="form">
+  <h1>ルール</h1>
+
+  <p>・当サービスは低い決済手数料でサーバー代を賄うためにアドセンス広告を掲載します。なので、Googleアドセンスで禁止されてるコンテンツ(アダルトやグロなど)の投稿はだめです。(<a href="https://support.google.com/adsense/answer/1348688?hl=ja">詳しくはこちら</a>)万が一、禁止ジャンルの投稿があった場合、管理者権限により抹殺します。</p>
+
+  <p>・ポストの購入機能はポスト自体を所有できるということではなく、コンテンツを「閲覧する権利」を得られるということです。なので、もし販売者がそのポストを削除したり、自身のアカウントを削
+除した場合は購入コンテンツも同時に削除されますのでご了承ください。</p>
+
+  <p>・支払った金額の返金はできないのでよく考えてから購入したり有料フォローしたりしましょう。</p>
+
+  <p>・ああいう人間よりもこういう人間になりましょう。</p>
+
+
+
+  <div id="auth_links">
+    <h1>SNSアカウントで登録</h1>
+    <% if devise_mapping.omniauthable? %>
+      <% resource_class.omniauth_providers.each do |provider| %>
+        <% if OmniAuth::Utils.camelize(provider) == "Twitter" %>
+          <%= link_to(omniauth_authorize_path(resource_name, provider), class:"auth_link twitter") do %>
+            <i class="fab fa-twitter"></i> Twitter
+          <% end %>
+        <% elsif OmniAuth::Utils.camelize(provider) == "GoogleOauth2"  %>
+          <%= link_to(omniauth_authorize_path(resource_name, provider), class:"auth_link google") do %>
+            <i class="fab fa-google"></i> Google
+          <% end %>
+        <% elsif OmniAuth::Utils.camelize(provider) == "Facebook" %>
+          <%= link_to(omniauth_authorize_path(resource_name, provider), class:"auth_link facebook") do %>
+            <i class="fab fa-facebook-f"></i> Facebook
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h1>メールアドレスで登録</h1>
+
+  <%= form_for(resource, as: resource_name, url: signup_post_path(resource_name)) do |f| %>
+  <%#= form_for(resource, as: resource_name, url: signup_post_path) do |f| %>
+    <%#= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <h4>メールアドレス</h4>
+      <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "require1" %>
+    </div>
+
+    <div class="field">
+      <h4>パスワード(6文字以上)</h4>
+      <%= f.password_field :password, autocomplete: "new-password", class: "require2" %>
+    </div>
+
+    <div class="field">
+      <h4>パスワード確認</h4>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "require3" %>
+    </div>
+
+    <%# codeはpresenceをtrueにしているからとりあえず適当に乱数を入れておく。あとですぐに乱数と日時を組み合わせたcodeに置き換わる %>
+    <%= f.hidden_field :code, value:"#{format("%0#{5}d", SecureRandom.random_number(10**5)) }"%>
+
+    <p id="require_message" style="text-align:center; clear:both;"></p>
+
+    <script>
+      $(function(){
+        // コンテンツタイトルが空白またはスペースだけであればsubmitさせない
+        setInterval(function(){
+          let value1 = $(".require1").val();
+          let value2 = $(".require2").val();
+          let value3 = $(".require3").val();
+          if ( value1 == "" || !value1.match(/[^\s\t]/) || value2 == "" || !value2.match(/[^\s\t]/) || value3 == "" || !value3.match(/[^\s\t]/) ||
+               value2.length < 6 || value2 != value3) {
+            $("#btn").css({"background":"rgba(0,255,255,0.5)"});
+            $("#btn").prop("disabled", true);
+          } else {
+            $("#btn").css({"background":"rgba(0,255,255,1)"});
+            $("#btn").prop("disabled", false);
+          }
+          // パスワードが１文字以上、６文字未満の状態で入力欄から離れたらメッセージを表示
+          $(".require2").on("blur", function(){
+            if (value2.length > 0 && value2.length < 6) {
+              $("#require_message").text("パスワードは６文字以上にしましょう");
+            } else {
+              if (value2.length >= 6 && value3.length > 0 && value2 != value3) {
+                $("#require_message").text("パスワードとパスワード確認の値が一致していません");
+              } else {
+                $("#require_message").text("");
+              }
+            }
+          });
+          // パスワードが６文字以上かつパスワード確認と値が一致していない状態で入力欄(パスワード確認)から離れたら表示
+          $(".require3").on("blur", function(){
+            if (value2.length > 0 && value2.length < 6) {
+              $("#require_message").text("パスワードは６文字以上にしましょう");
+            } else {
+              if (value2.length >= 6 && value3.length > 0 && value2 != value3) {
+                $("#require_message").text("パスワードとパスワード確認の値が一致していません");
+              } else {
+                $("#require_message").text("");
+              }
+            }
+          });
+          if (value2.length >= 6 && value3.length >= 6 && value2 == value3) {
+            $("#require_message").text("");
+          }
+        },1000);
+      });
+    </script>
+
+    <div class="actions">
+      <%= f.submit "SIGNUP", disabled:true, id:"btn" %>
+    </div>
+  <% end %>
+
+
+  <%= render "users/shared/links" %>
+
+
+</div>

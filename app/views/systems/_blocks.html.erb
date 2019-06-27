@@ -1,0 +1,37 @@
+<% blocks.each do |block| %>
+  <div class="block">
+    <div class="block_top">
+      <div class="slide_icon"><i class="fas fa-sort-down"></i></div>
+      <h2 class="name"><%= block.name %></h2>
+      <% if blocks.count > 1 %><%# blockが２つ以上ある場合のみ表示  %>
+        <% pick = Pick.find_by(system_id:system.id, block_id:block.id) %>
+        <div class="up">
+          <% if user_signed_in? %>
+            <% if current_user?(block.user) && pick.order > 1 %><%# 先頭ではないのであれば表示 %>
+              <%= link_to("/systems/#{system.id}/up/#{block.id}", method: :post, remote: true) do %><i class="fas fa-sort-up"></i><% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="down">
+          <% if user_signed_in? %>
+            <% if current_user?(block.user) && blocks.count > pick.order %><%# １番後ろではないのであれば表示 %>
+              <%= link_to("/systems/#{system.id}/down/#{block.id}", method: :post, remote: true) do %><i class="fas fa-sort-down"></i><% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="description"><%= simple_format(block.content) %></div>
+    </div>
+    <%# コード %>
+    <% block.codes.each do |code| %>
+      <div class="block_childs">
+        <h2><%= code.name %></h2>
+        <% if code.source.present? %><div class="source"><pre><code class="prettyprint"><%= code.source %></code></pre></div><% end %>
+        <%= image_tag code.image.url if code.image? %>
+        <% if code.description.present? %><div class="description"><%= simple_format(code.description) %></div><% end %>
+        <% if code.url.present? %><a href="<%= code.url %>" target="_blank"><%= code.url %></a><% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

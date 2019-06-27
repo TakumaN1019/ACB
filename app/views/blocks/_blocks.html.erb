@@ -1,0 +1,9 @@
+<div id="blocks">
+  <h1><%= title %></h1>
+  <% blocks.each do |block| %>
+    <%= link_to block_path(block.id), class:"block" do %>
+      <p><%= block.name %></p>
+    <% end %>
+  <% end %>
+</div>
+

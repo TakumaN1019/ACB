@@ -1,0 +1,36 @@
+<% content_for :title do %>
+  <%= "#{@user.name} | BOT SELECT" %>
+<% end %>
+
+<div id="user">
+  <% if not @user.image? %>
+    <% if 1 == rand(2) %>
+      <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/simple-post-mall/base/white_goat.jpg", id:"image" %>
+    <% else %>
+      <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/simple-post-mall/base/black_goat.jpg", id:"image" %>
+    <% end %>
+  <% end %>
+
+  <h2 id="name"><%= @user.name %></h2>
+  <% if user_signed_in? %>
+    <% if current_user?(@user) %>
+      <%= link_to "プロフィールを編集", edit_user_path(current_user.id), id:"edit_btn" %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<%= render "systems/systems", title:@systems_title, systems:@systems %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<%= render "blocks/blocks", title:@blocks_title, blocks:@blocks %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+

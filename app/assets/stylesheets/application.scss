@@ -1,0 +1,401 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+  $red: #f44336;
+  $blue: #2196F3;
+  $cyan: #00ffff;
+  $green: #4CAF50;
+  $yellow: #FFEB3B;
+  $orange: #FF9800;
+  $white: #FAFAFA;
+  $light_grey: #E0E0E0;
+  $grey: #9E9E9E;
+  $black: #263238;
+  $deep_black: #212121;
+
+  $main_color: $black;
+
+  body { margin:0; padding:50px 0 0 0; box-sizing:border-box; background:$black; }
+  div, h1, h2, h3, h4, p, a, span, input, textarea, ul, li, header, footer { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:rgba(0,0,0,0); }
+  a, a:hover, a:active { text-decoration:none; background:none; color:$cyan; }
+  p { padding:10px; }
+
+
+  // font-famiry
+  h1, h2, h3, h4, p, a { font-family: 'Roboto', 'Kosugi Maru', sans-serif; }
+  .logo_font, .btn, .send_btn, #flash p { font-family: 'Fredoka One', cursive; }
+
+  .ads_mobile { width:95%; height:auto; margin:30px auto; padding:20px 0; text-align:center; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2); }
+  .ads_pc { display:none; width:95%; height:auto; margin:30px auto; padding:20px 0; text-align:center; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2); }
+
+
+  #success { position:fixed; top:80px; right:-100%; padding:15px 50px 15px 30px; background:$cyan; border-radius:1000px 0 0 1000px;
+    p { color:$black; font-size:18px; text-align:center; padding:0; font-family: 'Fredoka One', cursive; }
+  }
+
+  #notice { position:fixed; top:0; bottom:0; left:0; right:0; z-index:20; font-family: 'Fredoka One', cursive;
+            width:90%; height:200px; margin:auto;  padding:30px; background:$cyan; border-radius:10px; color:$black; }
+  #notice_back { position:fixed; top:0; bottom:0; left:0; right:0; z-index:15; width:100%; height:100%; margin:auto;  background:rgba(0,0,0,0.6); cursor:pointer; }
+
+  #alert { width:95%; height:auto; margin:30px auto; padding:20px; background:$black; border:2px solid $black; border-radius:10px; text-align:center;
+    #message { width:100%; height:auto; padding:30px 20px; color:$cyan; font-size:15px; }
+    #close { width:100%; height:auto; color:$cyan; font-size:20px; display:inline; cursor:pointer; }
+  }
+
+
+  header { width:100%; height:50px; position:fixed; top:0; left:0; right:0; background:$main_color; border-bottom:1px solid rgba(0,255,255,0.1); z-index:30;
+    #logo { width:auto; height:50px; margin-left:20px; float:left; display:table; }
+      #logo a { color:$cyan; font-size:25px; padding:10px; display:table-cell; vertical-align:middle; }
+    #logo:hover { background:rgba(0,255,255,0.05); border-radius:100000px; }
+    .show_header_menu { cursor:pointer; }
+    #menu, #mypage { width:50px; height:50px; margin:0; padding:0; float:right; color:$cyan; font-size:30px; text-align:center; display:table; }
+      #menu i, #mypage a { color:$cyan; display:table-cell; vertical-align:middle; }
+    #menu i:hover, #mypage a:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+  }
+
+  #header_menu { display:none; position:fixed; top:50px; left:0; right:0; width:100%; margin:auto; padding:20px 0; background:$black;  z-index:20;
+    ul { list-style:none; width:100%; height:auto; margin:auto;
+      li { width:calc(20vmin); height:calc(20vmin); margin:auto auto 20px auto; padding:10px; text-align:center; float:left;
+        a { color:$cyan;
+          .icon { position:relative; width:70%; height:70%; margin:auto;  font-size:40px; }
+          .name { width:98%; height:30%; margin:10px auto; font-size:13px; font-weight:900; color:$cyan; font-family: 'Fredoka One', cursive; }
+        }
+      }
+      li:hover { background:rgba(0,255,255,0.05); border-radius:10000px;
+        .icon, .name { color:$cyan; background:none; }
+      }
+    }
+  }
+  #header_menu_back { display:none; position:fixed; top:0; bottom:0; left:0; right:0; z-index:15; 
+                      width:100%; height:100%; margin:auto; padding:0; background:rgba(0,0,0,0.4); cursor:pointer; }
+
+
+
+  #home_top { width:100%; height:auto; margin:50px auto; padding:0; text-align:center; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2); 
+    .source { background:$black; color:$cyan; text-align:left; padding:30px 20px; border-radius:10px;  
+      .source p { font-size:18.5px; line-height:20px; }
+    }
+    #btns { margin:auto; padding:50px 0; text-align:center; background:$black; border-radius:10px; 
+      .btn { width:auto; height:auto; margin:10px; padding:15px 20px; color:$black; background:$cyan; border-radius:5px; display:inline; }
+      .btn:hover { opacity:0.9; }
+    }
+  }
+
+  #user { width:100%; height:auto; margin:auto; padding:50px 0; background:$black; text-align:center; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    #image { width:100px; height:100px; margin:auto; border-radius:10000px; }
+    #name { text-align:center; line-height:25px; margin:20px auto; color:$cyan; font-size:25px; font-weight:500; }
+    #edit_btn { color:$cyan; border:1px solid $cyan; border-radius:5px; padding:10px; }
+    #edit_btn:hover { background:rgba(0,255,255,0.05); }
+  }
+
+
+  #block { width:100%; height:auto; margin:auto; padding:0; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    //blockの先頭
+    .block_top { width:100%; height:auto; margin:auto; padding:40px 0; 
+      h1 { color:$cyan; font-size:25px; margin:20px auto; padding:0 10px; }
+      img { width:100%; height:auto; margin:20px auto; }
+      p { color:$cyan; font-size:17px; margin:20px auto; padding:0 10px; }
+      a { color:$cyan; margin:20px auto; padding:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      a:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+      #pick_btn { width:150px; height:auto; margin:auto; padding:10px; cursor:pointer;  
+                  background:$black; border:1px solid $cyan; border-radius:10px; color:$cyan; text-align:center; }
+      #pick_btn:hover { background:$cyan; border:1px solid $black; color:$black; }
+    }
+    //blockの子要素(Code)の部分
+    .block_childs { width:100%; height:auto; margin:auto; padding:40px 0;  
+      h2 { color:$cyan; font-size:22px; padding:0 10px; }
+      .source { background:$deep_black; color:$cyan; font-size:17px; margin:20px 0; padding:30px 0; }
+        .source pre { background:$deep_black; overflow:scroll; }
+      .description { color:$cyan; font-size:17px; margin:20px 0; padding:30px 10px; }
+      p { color:$cyan; font-size:17px; padding:0 10px; }
+      a { color:$cyan; font-size:17px; margin:20px 0; padding:0 10px; word-break:break-all; }
+      a:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+      img { width:100%; height:auto; margin:20px auto; display:block; }
+    }
+    #mysystem_wrapper { display:none; position:fixed; top:0; bottom:0; left:0; right:0; z-index:5; width:120%; height:120%; background:rgba(0,0,0,0.5); cursor:pointer; }
+    #mysystem { display:none; position:fixed; top:0; bottom:0; left:0; right:0; z-index:10; width:90%; height:400px; margin:auto; background:$black; border-radius:10px; 
+      h3 { font-size:25px; text-align:center; width:100%; height:80px; margin-bottom:0; padding:20px; border-bottom:1px solid rgba(0,255,255,0.3); }
+      .system { width:100%; height:60px; margin:auto; padding:auto; border-bottom:1px solid $cyan;
+        .name { width:75%; height:60px; padding:10px 20px; color:$cyan; font-weight:600; float:left; }
+        .name:hover { background:rgba(0,255,255,0.05); }
+        .pick { width:25%; height:60px; padding:10px; float:right; display:table; 
+          .add { width:auto; height:auto; margin:auto; padding:5px 10px; background:$black; border:1px solid $cyan; border-radius:10px; 
+                 color:$cyan; text-align:center; display:table-cell; vertical-align:middle; }
+          .add:hover { background:rgba(0,255,255,0.05); }
+          .remove { width:auto; height:auto; margin:auto; padding:5px 10px; background:$cyan; border-radius:10px; 
+                    color:$black; text-align:center; display:table-cell; vertical-align:middle; }
+          .remove:hover { opacity:0.9; }
+        }
+      }
+    }
+  }
+
+  #blocks { width:95%; height:auto; margin:30px auto; padding:20px 0; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    h1 { color:$cyan; font-size:25px; text-align:center; line-height:30px; font-family:'Fredoka One', cursive; margin:30px auto; }
+    .block { width:90%; height:80px; margin:0 auto; padding:0;
+      p { color:$cyan; font-size:20px; margin:0; padding:5px 20px; background:$black; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+      p:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+    }
+  }
+
+
+  #system { width:100%; height:auto; margin:auto; padding:0; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    //systemの先頭
+    .system_top { width:100%; height:auto; margin:auto; padding:40px 0;
+      h1 { color:$cyan; font-size:25px; margin:20px auto; padding:0 10px; }
+      img { width:100%; height:auto; margin:20px auto; }
+      p { color:$cyan; font-size:17px; margin:20px auto; padding:0 10px; }
+      a { color:$cyan; margin:20px auto; padding:10px; }
+      a:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+    }
+    #system_blocks { background:$black; padding-bottom:100px; 
+      .block { clear:both; margin-bottom:80px;  
+        //blockの子要素(Code)の部分
+        .block_top { width:100%; height:auto; margin:auto; padding:0px 0;
+          .slide_icon { width:10%; height:100px; margin:0; padding:0; display:table; border-top:2px solid $cyan; border-right:2px solid $cyan; border-bottom:2px solid $cyan;
+                        font-size:25px; text-align:center; float:left; cursor:pointer; }
+            .slide_icon i { color:$cyan; display:table-cell; vertical-align:middle; }
+          .name { color:$cyan; font-size:25px; line-height:30px; width:80%; height:100px; margin:0; padding:20px;
+                  box-sizing:border-box; display:inline-block; float:left; cursor:pointer; border-top:2px solid $cyan; border-bottom:2px solid $cyan; }
+          .up, .down { width:10%; height:50px; margin:0; font-size:25px; text-align:center; display:table; }
+          .up { border-top:2px solid $cyan; }
+          .down { border-bottom:2px solid $cyan; }
+            .up a, .down a { text-align:center; color:$cyan; display:table-cell; vertical-align:middle; }
+          //img { width:100%; height:auto; margin:auto; }
+          .description { display:none; color:$cyan; font-size:17px; padding:0 20px; }
+          //a { display:none; color:$blue; padding:0 20px; }
+        }
+        .block_childs { display:none; width:100%; height:auto; margin:auto; padding:40px 0; text-align:center; 
+          h2 { color:$cyan; font-size:22px; padding:0 20px; text-align:left; }
+          .source { background:$deep_black; color:$cyan; font-size:17px; padding:30px 0; }
+            .source pre { background:$deep_black; overflow:scroll; text-align:left; }
+          .description { color:$cyan; font-size:17px; text-align:left; padding:30px 10px; }
+          a { color:$cyan; text-align:left; font-size:17px; padding:0 20px; text-align:left; word-break:break-all; }
+          a:hover { background:rgba(0,255,255,0.05); }
+          img { width:100%; height:auto; margin:20px auto; }
+        }
+      }
+    }
+  }
+
+  #systems { width:95%; height:auto; margin:30px auto; padding:20px 0; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    h1 { color:$cyan; font-size:25px; text-align:center; line-height:30px; font-family:'Fredoka One', cursive; margin:30px auto; }
+    .system { width:90%; height:80px; margin:0 auto; padding:0;
+      p { color:$cyan; font-size:20px; margin:0; padding:5px 20px; background:$black; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+      p:hover { background:rgba(0,255,255,0.05); border-radius:10000px; }
+    }
+  }
+
+
+  #form { width:100%; height:auto; margin:auto; padding:20px 0; background:$black; border-radius:10px; box-shadow:0 1px 6px rgba(0,255,255,0.2);
+    h1 { color:$cyan; font-size:25px; border:1px solid $cyan; border-radius:10px; width:auto; height:auto; margin:30px 20px; padding:10px 20px; display:inline-block; }
+    h2 { color:$cyan; font-size:23px; width:auto; height:auto; margin:50px 20px 10px 5px; padding-left:15px; border-bottom:1px solid #909090; }
+    h3 { color:$cyan; font-size:20px; width:auto; height:auto; margin:5px 20px; }
+    h4 { color:$cyan; font-size:17px; width:auto; height:auto; margin:5 20px; }
+    p { color:$cyan; font-size:17px; padding:10px 20px; }
+    a { color:$cyan; padding:10px; }
+    a:hover { background:rgba(0,255,255,0.05); }
+
+    .field { width:95%; height:auto; margin:0 auto 20px auto; padding:0 auto 100px auto;
+      input { width:100%; padding:10px; color:$cyan; border:none; border-bottom:1.5px solid rgba(0,255,255,0.2); background:$black; }
+      textarea { width:100%; height:300px; padding:10px; color:$cyan; border:1.5px solid rgba(0,255,255,0.2); border-radius:10px; background:$black; }
+      input:focus { border-bottom:3px solid $cyan; outline:0; }
+      textarea:focus { border:1px solid $cyan; outline:0; }
+
+      #range_radio { margin-bottom:-20px; }
+      #sale_radio, #monthly_fee_radio { display:none; height:180px; }
+      .radio { list-style:none; width:100%; padding:0 0 30px 0; overflow:auto; background:$white;
+        li{ color:#AAAAAA; width:33.33%; height:40px; margin-bottom:30px; /*各要素の領域*/ display:block; position:relative; float:left; }
+        li input[type=radio]{ position:absolute; visibility:hidden; }
+        li label{ width:100%; height:20px; margin:0 auto 0 auto; padding-top:40px; /*要素名*/
+                  display:block; position:relative; text-align:center; z-index:9; cursor:pointer; -webkit-transition:all 0.25s linear; }
+        li .check{ border:5px solid #AAA; width:20px; height:20px; /*ボタン*/
+                   display:block; position:absolute; border-radius:100%; margin:auto; top:10px; left:0; right:0; z-index:5;
+                   transition:border .20s linear; -webkit-transition:border .20s linear; }
+        li .check::before { width:10px; height:10px; /*ボタンの中*/
+                            display:block; position:absolute; content:''; border-radius:100%; margin:auto; top:0; left:0; right:0;  margin:auto;
+                            transition:background 0.25s linear; -webkit-transition:background 0.25s linear; }
+        input[type=radio]:checked ~ .check { border:5px solid $blue; }
+        input[type=radio]:checked ~ .check::before{ background:$blue; }
+        input[type=radio]:checked ~ label{ color:$blue; }
+      }
+      .input-group-text { color:$white; background:$red; border:0.5px solid $red; cursor:pointer; }
+      .imagePreview { width:95%; height:0; margin:30px 2.5%; background-position:center center; background-size:contain; //プレビュー画像の表示領域
+                      background-repeat:no-repeat; display:inline-block; text-align:center; }
+      .image_none { height:0; }
+      .image_there { height:300px; }
+        .imagePreview img { width:auto; height:auto; max-width:100%; max-height:100%; } //プレビュー画像
+      .input-group-btn { text-align:center; margin:auto; padding-bottom:20px; cursor:pointer; } //画像アップロードボタン
+        .btn-primary { color:$cyan; font-size:20px; padding:15px; background:$black; border:1px solid $cyan; border-radius:5px; } //画像アップロードボタン
+        .btn-primary:hover { color:$black; background:$cyan; border:0.5px solid $black; }
+
+      // セレクトボックス
+      .selectbox { overflow:hidden; width:80%; margin:2em auto; text-align:center; }
+      .selectbox select { width:100%; padding-right:1em; cursor:pointer; text-indent:0.01px; text-overflow:ellipsis; border: none; outline:none;
+                          background:transparent; background-image:none; box-shadow:none; -webkit-appearance:none; appearance:none; }
+      .selectbox select::-ms-expand { display:none; }
+      .selectbox.sb { position:relative; border-radius:2px; border:2px solid $cyan; border-radius:5px; background:$cyan; }
+      .selectbox.sb::before { position:absolute; top:0.8em; right:0.8em; width:0; height:0; padding:0;
+                              content:''; border-left:6px solid transparent; border-right:6px solid transparent; border-top:6px solid $cyan; pointer-events:none; }
+      .selectbox.sb select { padding:8px 38px 8px 8px; color:$black; }
+
+
+      // 既存の画像を削除するボタン
+      .remove_label { width:120px; height:auto; margin:0 auto 30px auto; padding:5px; background:$cyan; border:0.5px solid $black; border-radius:5px; cursor:pointer; display:block;
+                      color:$black; text-align:center; font-size:15px; }
+      .remove_label:hover { background:$cyan; border:none; color:$cyan; }
+      .remove_image_btn { display:none; }
+    }
+
+    .code_none { display:none; } //code_fieldに値が入っていなければフォームを非表示
+    .code_btns { width:100%; height:auto; margin:auto; padding:0; display:block; clear:both;
+      ul { text-align:center; padding:0;
+        .btn { list-style:none; display:inline-block; width:40px; height:40px; margin:20px 10px; padding:7px; background:$black; cursor:pointer;
+               color:$cyan; font-size:20px; border:0.5px solid $cyan; border-radius:5px; text-align:center; }
+          .btn label { cursor:pointer; width:100%; height:100%; }
+        .btn:hover { background:rgba(0,255,255,0.05); }
+        .there { background:$cyan; color:$black; border:none; }
+        .there:hover { opacity:0.9; }
+      }
+    }
+
+    // エラーメッセージを表示するところ。fieldクラスをオーバーライドしている。
+    .error_field { background:$black;
+      .error_message { color:#e85564; }
+    }
+
+    .code_field { width:100%; height:auto; margin-top:150px; padding:auto;
+      .code_source { background:$black; color:$cyan; }
+      .plus, .minus { margin:30px 50px; padding:12px 14px; font-size:20px; font-weight:400; color:$cyan; background:$black; border:0.5px solid $cyan; border-radius:1000px; }
+      .plus:hover, .minus:hover { color:$black; background:$cyan; border:none; text-decoration:none; }
+      .minus_field, .plus_field { width:50%; margin-bottom:50px; text-align:center; float:left; }
+    }
+
+    #delete_btn { padding:10px 15px; color:#e85564; background:$white; border:0.5px solid #e85564; border-radius:5px; cursor:pointer; }
+    #links { padding:40px 20px; text-align:center; }
+      #links a { color:$black; padding-bottom:10px; }
+
+    // パスワード変更
+    #password_change_btn { cursor:pointer; }
+    #password_change_field { display:none; }
+
+    #form_etc { display:none; }
+    .actions { text-align:center; clear:both;
+      #btn { padding:10px 15px; color:$black; font-size:20px; background:rgba(0,255,255,0.5); border:none; border-radius:10px; cursor:pointer; font-family: 'Fredoka One', cursive; }
+      #btn:hover { opacity:0.9; }
+    }
+
+    #auth_links { width:100%; height:auto; padding:30px 0;
+      .auth_link { width:240px; height:70px; margin:15px auto; padding:20px; border-radius:5px; display:block; color:$white; font-size:30px; text-align:center; }
+      .auth_link:hover { opacity:0.9; }
+      .twitter { background:$blue; color:$white; }
+      .google { background:#4285f4; color:$white; }
+      .facebook { background:#3b5998; color:$white; }
+    }
+
+  }
+
+
+  footer { width:100%; height:150px; padding:25px 0; clear:both; text-align:center;
+    ul { width:95%; height:50px; margin:auto; list-style:none; text-align:center; }
+      li { margin:10px; font-size:18px; display:inline-block; }
+        li a { color:$cyan; padding:10px; font-family: 'Fredoka One', cursive; }
+        li a:hover { background:rgba(0,255,255,0.05); border-radius:1000px; }
+        li a:visited { color:$cyan; }
+    #footer_logo { width:100%; height:50px; margin:50px auto; clear:both; position:relative; }
+      #footer_logo_soto { width:35px; height:35px; margin:auto; background:$cyan; border-radius:10000px; position:absolute; top:0; bottom:0; left:0; right:0; }
+      #footer_logo_uti { width:13px; height:13px; margin:auto; background:$black; border-radius:10000px; position:absolute; top:0; bottom:0; left:0; right:0; }
+  }
+
+
+  @media screen and (min-width:750px) {
+
+    body { padding-top:90px; }
+
+    #notice { width:400px; }
+
+    .ads_mobile { display:none; }
+    .ads_pc { display:block; width:70%; }
+
+    header { height:60px;
+      #logo { height:60px; }
+        #logo a { font-size:20px; margin:10px 20px; padding:7.5px; }
+      #menu, #mypage { width:60px; height:60px; margin-right:10px; font-size:35px; }
+    }
+    #header_menu { top:60px;
+      ul { width:70%;  margin:auto;
+        li { width:80px; height:80px; }
+      }
+    }
+
+    #home_top { width:70%; margin:auto; }
+    #user { width:70%; margin:auto; }
+    #system { width:80%; margin:0 auto; }
+    #systems { width:70%; margin:30px auto;
+      .system {
+        p { padding:5px 40px;  }
+      }
+    }
+
+    #block { width:70%; margin:0 auto; 
+      #mysystem { width:400px; }
+      //blockの子要素(Code)の部分
+      .block_childs { 
+        h2 { padding:0 20px; }
+          .source pre { padding:20px; }
+        .description { padding:20px; }
+        p { text-align:left; }
+        a { padding:0 20px; }
+        img { width:90%; margin:20px auto; }
+      }
+    }
+
+    #blocks { width:70%; margin:30px auto;
+      .block {
+        p { padding:5px 40px;  }
+      }
+    }
+
+    #form { width:80%; margin:auto;
+      .field {
+        li:hover label{ color:$black; }
+      }
+      .radio {
+        li:hover .check { border:5px solid $black; }
+      }
+      .code_field {
+      }
+      #delete_btn:hover { color:$white; background:#e85564; border:0.5px solid $white; }
+    }
+
+  }
+
+
+  @media screen and (min-width:960px) {
+    #header_menu {
+      ul { width:35%; }
+    }
+    .ads_pc { width:60%; }
+    #home_top { width:60%; }
+    #user { width:60%; }
+    #system { width:60%; margin:0 auto; }
+    #systems { width:60%; }
+    #block { width:60%; margin:0 auto; }
+    #blocks { width:60%; }
+    #form { width:50%; margin:auto; }
+  }
+
+

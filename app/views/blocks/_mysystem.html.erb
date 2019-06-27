@@ -1,0 +1,14 @@
+<h3>マイレシピ</h3>
+<% if user_signed_in? %>
+  <% systems.each do |system| %>
+    <div class="system">
+      <%= link_to "#{system.name}", system_path(system.id), class:"name" %>
+      <% if !Pick.exists?(system_id:system.id, block_id:block.id) %>
+        <div class="pick"><%= link_to "追加", "/blocks/#{block.id}/#{system.id}", method: :post, remote: true, class:"add" %></div>
+      <% else %>
+        <div class="pick"><%= link_to "除外", "/blocks/#{block.id}/#{system.id}", method: :delete, remote: true, class:"remove" %></div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+

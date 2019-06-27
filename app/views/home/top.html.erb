@@ -1,0 +1,32 @@
+<% if not user_signed_in? %>
+  <div id="home_top">
+    <div class="source">
+      <p>$ Hello, world!</p>
+      <p>loading...<br>
+         どうも。ACBへようこそ。<br>
+         このサービスはエンジニアがよく使うコード群をあらかじめストックしておいて、開発時にそれらを組み合わせることでほとんどコピペだけで簡単に開発できるようにするためのサービスです。<br>
+         完全に自分用につくりましたが、使ってみたいという方は気軽に試してみてください！<br>
+         TakumaNより</p>
+      <p>$ _</p>
+    </div>
+    <div id="btns">
+      <%= link_to "ログイン", login_get_path, class: "btn" %>
+      <%= link_to "新規登録", signup_get_path, class: "btn" %>
+    </div>
+  </div>
+<% end %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<%= render "systems/systems", title:@systems_title, systems:@systems %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+<%= render "blocks/blocks", title:@blocks_title, blocks:@blocks %>
+
+<%# アドセンス広告=>レクタングル大 %>
+<%= render "home/adsense" %>
+
+

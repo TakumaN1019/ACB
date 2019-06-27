@@ -1,0 +1,48 @@
+<div id="form">
+
+  <h1><%= title %></h1>
+
+  <%= form_with(model: system, local: true) do |form| %>
+
+    <div class="field">
+      <%= form.text_field :name, maxlength:"50", placeholder:"ボットネーム", class:"system_name require" %>
+    </div>
+
+    <div class="field">
+      <%= form.text_area :description, maxlength:"9999", placeholder:"", class:"system_description" %>
+    </div>
+
+    <div class="field">
+      <%= form.text_field :url, maxlength:"100", placeholder:"", class:"system_url" %>
+    </div>
+
+    <p id="require_message" style="text-align:center; clear:both;"></p>
+
+    <script>
+      // 入力チェックのスクリプト
+      $(function(){
+        // コンテンツタイトルが空白またはスペースだけであればsubmitさせない
+        setInterval(function(){
+          let value = $(".require").val();
+          if ( value == "" || !value.match(/[^\s\t]/) ) {
+            $("#require_message").text("レシピ名を入力しましょう");
+            $("#btn").css({"background":"rgba(0,255,255,0.5)"});
+            $("#btn").prop("disabled", true);
+          } else {
+            $("#require_message").text("");
+            $("#btn").css({"background":"rgba(0,255,255,1)"});
+            $("#btn").prop("disabled", false);
+          }
+        },1000);
+      });
+    </script>
+
+
+    <div class="actions">
+      <%= form.submit "作成", disabled:true, id:"btn" %>
+    </div>
+
+  <% end %>
+
+</div>
+

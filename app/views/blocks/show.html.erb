@@ -1,0 +1,48 @@
+<% content_for :title do %>
+  <%= "#{@block.name} | ACB" %>
+<% end %>
+
+  <%# アドセンス広告=>レクタングル大 %>
+  <%= render "home/adsense" %>
+
+  <div id="block">
+
+    <div class="block_top">
+      <%# タイトル %>
+      <h1><%= @block.name %></h1>
+      <%# 編集、削除ボタン %>
+      <% if user_signed_in? %>
+        <% if current_user?(@block.user) %>
+          <%= link_to "編集", edit_block_path(@block.id) %>
+          <%= " | " %><%= link_to "削除", block_path(@block.id), data: { confirm: "本当に削除しますか？" }, method: :delete %>
+        <% end %>
+      <% end %>
+      <p>投稿者： <%= link_to @block.user.name, user_path(@block.user.id) %></p>
+      <div id="pick_btn">PICK</div>
+      <%# トップのテキスト %>
+      <p><%= simple_format(@block.content) %></p>
+    </div>
+
+
+    <%# コード %>
+    <% @block.codes.each do |code| %>
+      <div class="block_childs">
+        <h2><%= code.name %></h2>
+        <% if code.source.present? %><div class="source"><pre><code class="prettyprint"><%= code.source %></code></pre></div><% end %>
+        <%= image_tag code.image.url if code.image? %>
+        <% if code.description.present? %><div class="description"><%= simple_format(code.description) %></div><% end %>
+        <% if code.url.present? %><a href="<%= code.url %>" target="_blank"><%= code.url %></a><% end %>
+      </div>
+    <% end %>
+
+
+    <div id="mysystem_wrapper"></div>
+    <div id="mysystem">
+      <%= render "blocks/mysystem", systems:@systems, block:@block %>
+    </div>
+
+  </div>
+
+  <%# アドセンス広告=>レクタングル大 %>
+  <%= render "home/adsense" %>
+
