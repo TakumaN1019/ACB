@@ -14,10 +14,12 @@
       <%= link_to "新規登録", signup_get_path, class: "btn" %>
     </div>
   </div>
+
+  <%# アドセンス広告=>レクタングル大 %>
+  <%= render "home/adsense" %>
+
 <% end %>
 
-<%# アドセンス広告=>レクタングル大 %>
-<%= render "home/adsense" %>
 
 <%= render "systems/systems", title:@systems_title, systems:@systems %>
 
