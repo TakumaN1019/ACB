@@ -1,7 +1,7 @@
 class Block < ApplicationRecord
 
   belongs_to :user
-  has_many :codes
+  has_many :codes, dependent: :destroy
   has_many :picks
   has_many :systems, through: :picks
 

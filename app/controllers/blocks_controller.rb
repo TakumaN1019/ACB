@@ -42,7 +42,7 @@ class BlocksController < ApplicationController
   def update
     if @block.update(block_params)
       flash[:success] = "UPDATE"
-      redirect_to @block
+      redirect_to block_path(@block.id)
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class BlocksController < ApplicationController
   def destroy
     @block.destroy
     flash[:success] = "DELETE"
-    redirect_to user_path(@block.user.nickname)
+    redirect_to user_path(@block.user.id)
   end
 
 

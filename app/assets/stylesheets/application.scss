@@ -278,7 +278,7 @@
     }
 
     .code_field { width:100%; height:auto; margin-top:150px; padding:auto;
-      .code_source { background:$black; color:$cyan; }
+      .code_source { background:$deep_black; color:$cyan; }
       .plus, .minus { margin:30px 50px; padding:12px 14px; font-size:20px; font-weight:400; color:$cyan; background:$black; border:0.5px solid $cyan; border-radius:1000px; }
       .plus:hover, .minus:hover { color:$black; background:$cyan; border:none; text-decoration:none; }
       .minus_field, .plus_field { width:50%; margin-bottom:50px; text-align:center; float:left; }
